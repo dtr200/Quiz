@@ -7,6 +7,8 @@
 ### Использовались:
 * React
 * Redux
+* React Hooks
 * React Router
 * Context
+* HOC
 * Bootstrap
