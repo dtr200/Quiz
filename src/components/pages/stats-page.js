@@ -2,7 +2,9 @@ import React from 'react';
 
 const StatsPage = () => {
     return (
-        <h1>Stats Page</h1>
+        <main className="page-main">
+            <h1 className="page-main__title">Статистика</h1>
+        </main>
     )
 }
 

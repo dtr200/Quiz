@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { withQuizService } from '../hoc';
 import { Switch, Route } from 'react-router-dom';
 import Header from '../header';
@@ -8,7 +8,7 @@ import './app.css';
 const App = ({ quizService }) => {
 
     return (
-        <>
+        <Fragment>
             <Header />
             <Switch>
                 <Route 
@@ -20,7 +20,7 @@ const App = ({ quizService }) => {
                     component={StatsPage}
                     exact />
             </Switch>
-        </>
+        </Fragment>
     )
 }
 

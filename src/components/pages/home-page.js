@@ -4,7 +4,7 @@ import Quiz from '../quiz';
 const HomePage = () => {
     return (
         <main className="page-main">
-            <h1 className="page-main__title">Home Page</h1>
+            <h1 className="page-main__title">Анкета оценки педагогической деятельности</h1>
             <Quiz />
         </main>
     )
