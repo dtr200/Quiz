@@ -1,0 +1,15 @@
+.checkbox__row{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.checkbox__main{
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-top: 0;
+}
+
+.checkbox__label{
+    font-size: 1.05rem;
+}

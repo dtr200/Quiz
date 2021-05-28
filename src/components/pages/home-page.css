@@ -1,0 +1,11 @@
+.page-main__title{
+    font-size: 1.25rem;
+    text-align: center;
+    margin: 3vh 0 7.5vh;
+}
+
+@media(min-width: 640px){
+    .page-main__title{
+        font-size: 2.5rem;
+    }
+}

@@ -4,7 +4,7 @@ export default class QuizService {
         return [            
             {
                 id: 1,
-                title: `Наименование учреждения(полное и сокращенное)`,
+                title: `Наименование учреждения (полное и сокращенное)`,
                 type: 'input',
                 details: {
                     options: null,
@@ -15,7 +15,7 @@ export default class QuizService {
             },
             {
                 id: 2,
-                title: `Адрес учреждения /сайт/телефон/e-mail`,
+                title: `Адрес учреждения/сайт/телефон/e-mail`,
                 type: 'input',
                 details: {
                     options: null,
@@ -37,8 +37,7 @@ export default class QuizService {
                             {
                                 id: 2,
                                 name: 'Бюджетное' }
-                        ],
-                        multiple: false
+                        ]
                     },
                     link: false,
                     input: null,
@@ -48,7 +47,7 @@ export default class QuizService {
             {
                 id: 4,
                 title: `Лицензия:`,
-                type: 'select',
+                type: 'checkbox',
                 details: {
                     options: {
                         list: [
@@ -58,8 +57,7 @@ export default class QuizService {
                             {
                                 id: 4,
                                 name: 'на осуществление образовательной деятельности' }
-                        ],
-                        multiple: true
+                        ]
                     },
                     link: 'one',
                     input: null,
@@ -95,7 +93,7 @@ export default class QuizService {
                 id: 7,
                 title: `Укажите наличие в учреждении нормативно-правового обеспечения организации
                 получения образования детьми- инвалидами:`,
-                type: 'select',
+                type: 'checkbox',
                 details: {
                     options: {
                         list: [
@@ -111,8 +109,7 @@ export default class QuizService {
                             {
                                 id: 8,
                                 name: `Другое` }
-                        ],
-                        multiple: true
+                        ]
                     },
                     link: true,
                     input: null,
@@ -122,7 +119,7 @@ export default class QuizService {
             {
                 id: 8,
                 title: `Укажите категории детей с инвалидностью в учреждении, что обусловлено:`,
-                type: 'select',
+                type: 'checkbox',
                 details: {
                     options: {
                         list: [
@@ -138,8 +135,7 @@ export default class QuizService {
                             {
                                 id: 12,
                                 name: `Другое` }
-                        ],
-                        multiple: true
+                        ]
                     },
                     link: false,
                     input: {
@@ -152,7 +148,7 @@ export default class QuizService {
             {
                 id: 9,
                 title: `Укажите количество детей с инвалидностью для обучения в классах:`,
-                type: 'select',
+                type: 'checkbox',
                 details: {
                     options: {
                         list: [
@@ -165,8 +161,7 @@ export default class QuizService {
                             {
                                 id: 15,
                                 name: `В классах старшей ступени (10-11 кл.)` }
-                        ],
-                        multiple: true
+                        ]
                     },
                     link: false,
                     input: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import './input.css';
 
@@ -7,10 +7,18 @@ const Input = ({ id, title }) => {
     const labelKey = `${id}lab`;
     
     return (
-        <label key={labelKey}>
-            {title}           
-            <input type="text" key={inputKey} />
-        </label>       
+        <Fragment>
+            <label 
+                key={labelKey}
+                htmlFor={id}>
+                {title}
+            </label>
+            <input 
+                className="form-control form-control-lg"
+                type="text" 
+                key={inputKey}
+                id={id}/>
+        </Fragment>              
     )
 }
 

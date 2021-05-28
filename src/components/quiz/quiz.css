@@ -1,0 +1,20 @@
+.quiz__list{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4vh;
+    padding: 0 2vw;
+}
+.quiz__list-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz__list-item > label{
+    margin-bottom: 1vw;
+}
+
+.quiz__submit{
+    width: 33vw;
+    margin-bottom: 2vh;
+}

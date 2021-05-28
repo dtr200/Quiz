@@ -1,20 +1,24 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Option from '../option';
 
 import './select.css';
 
 const Select = ({ id, details, title }) => {
-    const { list, multiple } = details.options;
+    const { list } = details.options;
     const selectKey = `${id}sel`;
     const labelKey = `${id}slab`;
 
     return (
-        <label 
-            key={labelKey}>
-            {title}
+        <Fragment>
+            <label 
+                key={labelKey}
+                htmlFor={id}>
+                {title}
+            </label>
             <select 
-                key={selectKey} 
-                multiple={multiple}>
+                className="form-control form-control-lg"
+                key={selectKey}
+                id={id}>
                 { 
                     list.map(item => {
                         return (
@@ -25,7 +29,8 @@ const Select = ({ id, details, title }) => {
                     }) 
                 }
             </select>
-        </label>
+            
+        </Fragment>
     )
 }
 

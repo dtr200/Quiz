@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import './textarea.css';
 
@@ -7,15 +7,18 @@ const Textarea = ({ id, title }) => {
     const areaKey = `${id}tar`;
     
     return (
-        <label 
-            htmlFor={id}
-            key={labelKey}>
-            {title}
-            <textarea 
+        <Fragment>
+            <label 
+                htmlFor={id}
+                key={labelKey}>
+                {title}
+            </label>
+            <textarea
+                className="form-control form-control-lg" 
                 id={id}
                 key={areaKey}>
-            </textarea>
-        </label>
+            </textarea>            
+        </Fragment>        
     )
 }
 
