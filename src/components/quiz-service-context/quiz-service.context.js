@@ -1,11 +1,5 @@
 import React from 'react';
 
-const { 
-    Provider: QuizServiceProvider, 
-    Consumer: QuizServiceConsumer 
-} = React.createContext();
+const QuizContext = React.createContext();
 
-export {
-    QuizServiceProvider,
-    QuizServiceConsumer
-}
+export default QuizContext;

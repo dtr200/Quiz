@@ -1,7 +1,3 @@
-import { QuizServiceProvider,
-         QuizServiceConsumer } from './quiz-service.context';
+import QuizContext from './quiz-service.context';
 
-export {
-    QuizServiceProvider,
-    QuizServiceConsumer
-}
+export default QuizContext;

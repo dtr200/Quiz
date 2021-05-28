@@ -1,10 +1,10 @@
 import React from 'react';
-import { QuizServiceConsumer } from '../quiz-service-context';
+import QuizContext from '../quiz-service-context';
 
 const withQuizService = () => (Wrapped) => {
     return (props) => {
         return (
-            <QuizServiceConsumer>
+            <QuizContext.Consumer>
                 {
                     (quizService) => {
                         return (
@@ -13,7 +13,7 @@ const withQuizService = () => (Wrapped) => {
                         )
                     }
                 }
-            </QuizServiceConsumer>
+            </QuizContext.Consumer>
             )
     }
 }

@@ -7,18 +7,18 @@ import store from './store';
 import App from './components/app';
 import ErrorBoundry from './components/error-boundry';
 import QuizService from './services/quiz-service';
-import { QuizServiceProvider } from './components/quiz-service-context';
+import QuizContext from './components/quiz-service-context';
 
 const quizService = new QuizService();
 
 ReactDOM.render(
     <Provider store={store}>
         <ErrorBoundry> 
-            <QuizServiceProvider value={quizService}>
+            <QuizContext.Provider value={quizService}>
                 <Router>
                    <App /> 
                 </Router>                
-            </QuizServiceProvider>
+            </QuizContext.Provider>
         </ErrorBoundry>
     </Provider>,
     document.getElementById('root')

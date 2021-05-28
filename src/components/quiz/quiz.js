@@ -3,15 +3,11 @@ import Input from '../input';
 import Select from '../select';
 import Textarea from '../textarea';
 import Checkbox from '../checkbox/checkbox';
-import QuizService from '../../services/quiz-service';
+import { connect } from 'react-redux';
 
 import './quiz.css';
 
-const quizService = new QuizService();
-
-const Quiz = () => {
-
-    const questions = quizService.getQuestions();
+const Quiz = ({ questions }) => {
 
     const getRow = (id, title, details) => (Wrapped) => {
         const liKey = `${id}li`;
@@ -58,4 +54,10 @@ const Quiz = () => {
     )
 }
 
-export default Quiz;
+const mapStateToProps = ({ questions }) => {
+    return {
+        questions
+    }
+}
+
+export default connect(mapStateToProps)(Quiz);
