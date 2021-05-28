@@ -2,28 +2,27 @@ import React, {Fragment} from 'react';
 
 import './checkbox.css';
 
-const Checkbox = ({ id, title, details }) => {
-    const checkboxKey = `${id}ch`;
-    const labelKey = `${id}chl`;
+const Checkbox = ({ title, details }) => {
 
     const { list } = details.options;
-    console.log(list)
     
     return (
         <Fragment>
             <label className="">{title}</label>
             {
                 list.map(({ id, name }) => {
+                    const blockKey = `${id}b`;
+
                     return (
-                        <div className="checkbox__row form-check">
+                        <div 
+                            className="checkbox__row form-check"
+                            key={blockKey}>
                             <input 
                                 className="checkbox__main form-check-input"
                                 type="checkbox" 
-                                key={checkboxKey}
                                 id={id}/>
                             <label 
                                 className="form-check-label form-control-lg checkbox__label"
-                                key={labelKey}
                                 htmlFor={id}>
                                 {name}
                             </label> 
