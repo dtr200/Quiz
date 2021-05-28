@@ -2,14 +2,10 @@ import React from 'react';
 
 import './option.css';
 
-const Option = ({ value: { id, name } }) => {
-   const optionKey = `${id}opt`;
-
+const Option = ({ value: { name } }) => {
+    
     return (
-        <option 
-            key={optionKey}>
-            {name}
-        </option>
+        <option>{name}</option>
     )
 }
 
