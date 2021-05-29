@@ -1,13 +1,19 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect } from 'react';
 import Input from '../input';
 import Select from '../select';
 import Textarea from '../textarea';
 import Checkbox from '../checkbox/checkbox';
+import { withQuizService } from '../hoc';
 import { connect } from 'react-redux';
 
 import './quiz.css';
 
-const Quiz = ({ questions }) => {
+const Quiz = ({questions}) => {
+
+    console.log(questions)
+    useEffect(() => {
+        return () => console.log('unmount if next effect needed');
+    }, [])
 
     const getRow = (id, title, details) => (Wrapped) => {
         const liKey = `${id}li`;
@@ -60,4 +66,6 @@ const mapStateToProps = ({ questions }) => {
     }
 }
 
-export default connect(mapStateToProps)(Quiz);
+export default withQuizService(
+               connect(mapStateToProps)(Quiz)
+               );
