@@ -4,15 +4,16 @@ import Select from '../select';
 import Textarea from '../textarea';
 import Checkbox from '../checkbox/checkbox';
 import { withQuizService } from '../hoc';
+import { questionsLoaded } from '../../actions';
 import { connect } from 'react-redux';
 
 import './quiz.css';
 
-const Quiz = ({questions}) => {
+const Quiz = ({quizService, questions, questionsLoaded }) => {
 
-    console.log(questions)
     useEffect(() => {
-        return () => console.log('unmount if next effect needed');
+        const data = quizService.getQuestions();
+        questionsLoaded(data)
     }, [])
 
     const getRow = (id, title, details) => (Wrapped) => {
@@ -66,6 +67,10 @@ const mapStateToProps = ({ questions }) => {
     }
 }
 
-export default withQuizService(
-               connect(mapStateToProps)(Quiz)
-               );
+const mapDispatchToProps = {
+    questionsLoaded
+}
+
+export default withQuizService()(
+        connect(mapStateToProps, mapDispatchToProps)(Quiz)
+        );
