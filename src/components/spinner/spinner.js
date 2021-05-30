@@ -4,7 +4,29 @@ import './spinner.css';
 
 const Spinner = () => {
     return (
-        <h3>Loading...</h3>
+        <div class="loadingio-spinner-spinner-88ct2rgsrdg spinner">
+            <div class="ldio-yp881gue0zp">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
     )
 }
 

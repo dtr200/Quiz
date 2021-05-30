@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import './quiz.css';
 
-const Quiz = ({quizService, questions, questionsLoaded }) => {
+const Quiz = ({ quizService, questions, questionsLoaded }) => {
 
     useEffect(() => {
         const data = quizService.getQuestions();
