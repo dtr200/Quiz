@@ -1,10 +1,18 @@
-import React, {Fragment} from 'react';
+import React, { Fragment, useState } from 'react';
 
 import './textarea.css';
 
 const Textarea = ({ id, title }) => {
+
+    const [ text, setText ] = useState('');
+
     const labelKey = `${id}tlab`;
     const areaKey = `${id}tar`;
+
+    const areaHandler = (e) => {
+        const { value } = e.target;
+        setText(value);
+    }
     
     return (
         <Fragment>
@@ -16,7 +24,9 @@ const Textarea = ({ id, title }) => {
             <textarea
                 className="form-control form-control-lg" 
                 id={id}
-                key={areaKey}>
+                key={areaKey}
+                value={text}
+                onChange={areaHandler}>
             </textarea>            
         </Fragment>        
     )

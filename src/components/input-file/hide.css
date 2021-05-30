@@ -1,4 +1,6 @@
 .hide{
     transition: all .2s;
     opacity: 0;
+    position: relative;
+    z-index: -1;
 }
