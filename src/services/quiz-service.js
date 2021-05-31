@@ -225,9 +225,13 @@ export default class QuizService {
         ];
 
     getQuestions(){
-        return new Promise((resolve) => {
-            setTimeout(() => 
-                resolve(this.data), 500);
+        return new Promise((resolve, reject) => {
+            const random = Math.random();
+            
+            setTimeout(() => {
+                return  random > 0.2 ? resolve(this.data) : 
+                    reject(new Error('Something bad happens'));
+            }, 500);
         })
     }
 }

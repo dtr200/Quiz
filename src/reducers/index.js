@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
             return {
                 questions: [],
                 loading: false,
-                error: true
+                error: action.payload
             }
         default: 
             return state;

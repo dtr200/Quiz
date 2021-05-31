@@ -4,18 +4,20 @@ import Select from '../select';
 import Textarea from '../textarea';
 import Checkbox from '../checkbox';
 import Spinner from '../spinner';
+import ErrorIndicator from '../error-indicator';
 import { withQuizService } from '../hoc';
-import { questionsRequest, questionsLoaded } from '../../actions';
+import { questionsRequest, questionsLoaded, questionsError } from '../../actions';
 import { connect } from 'react-redux';
 
 import './quiz.css';
 
-const Quiz = ({ quizService, questions, loading, questionsLoaded }) => {
+const Quiz = ({ quizService, questions, loading, 
+                error, questionsLoaded, questionsError }) => {
 
     useEffect(() => {
         quizService.getQuestions()
-            .then((data) => 
-                questionsLoaded(data))
+            .then(data => questionsLoaded(data))
+            .catch(err => questionsError(err));
     }, [])
 
     const getRow = (id, title, details) => (Wrapped) => {
@@ -36,6 +38,9 @@ const Quiz = ({ quizService, questions, loading, questionsLoaded }) => {
     if(loading)
         return <Spinner />
 
+    if(error)
+        return <ErrorIndicator />
+        
     return (
         <Fragment>
             <ul className='quiz__list form-control-lg'>
@@ -66,15 +71,18 @@ const Quiz = ({ quizService, questions, loading, questionsLoaded }) => {
     )
 }
 
-const mapStateToProps = ({ questions, loading }) => {
+const mapStateToProps = ({ questions, loading, error }) => {
     return {
         questions,
-        loading
+        loading,
+        error
     }
 }
 
 const mapDispatchToProps = {
-    questionsLoaded
+    questionsRequest,
+    questionsLoaded,
+    questionsError
 }
 
 export default withQuizService()(
