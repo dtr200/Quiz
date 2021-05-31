@@ -5,6 +5,7 @@ export default class QuizService {
             {
                 id: 1,
                 title: `Наименование учреждения (полное и сокращенное)`,
+                alt: 'companyName',
                 type: 'input',
                 details: {
                     options: null,
@@ -16,6 +17,7 @@ export default class QuizService {
             {
                 id: 2,
                 title: `Адрес учреждения/сайт/телефон/e-mail`,
+                alt: 'companyAddress',
                 type: 'input',
                 details: {
                     options: null,
@@ -26,7 +28,8 @@ export default class QuizService {
             },
             {
                 id: 3,
-                title: `Тип:`,
+                title: `Тип`,
+                alt: 'type',
                 type: 'select',
                 details: {
                     options: {
@@ -46,7 +49,8 @@ export default class QuizService {
             },
             {
                 id: 4,
-                title: `Лицензия:`,
+                title: `Лицензия`,
+                alt: 'license',
                 type: 'checkbox',
                 details: {
                     options: {
@@ -67,6 +71,7 @@ export default class QuizService {
             {
                 id: 5,
                 title: `Год фактического начала предоставления учреждением образовательных услуг`,
+                alt: 'yearBegin',
                 type: 'input',
                 details: {
                     options: null,
@@ -78,6 +83,7 @@ export default class QuizService {
             {
                 id: 6,
                 title: `Общая численность детей с инвалидностью в текущем году`,
+                alt: 'children',
                 type: 'input',
                 details: {
                     options: null,
@@ -92,7 +98,8 @@ export default class QuizService {
             {
                 id: 7,
                 title: `Укажите наличие в учреждении нормативно-правового обеспечения организации
-                получения образования детьми- инвалидами:`,
+                получения образования детьми- инвалидами`,
+                alt: 'docsAvailable',
                 type: 'checkbox',
                 details: {
                     options: {
@@ -118,7 +125,8 @@ export default class QuizService {
             },
             {
                 id: 8,
-                title: `Укажите категории детей с инвалидностью в учреждении, что обусловлено:`,
+                title: `Укажите категории детей с инвалидностью в учреждении, что обусловлено`,
+                alt: 'disabledCategory',
                 type: 'checkbox',
                 details: {
                     options: {
@@ -147,7 +155,8 @@ export default class QuizService {
             },
             {
                 id: 9,
-                title: `Укажите количество детей с инвалидностью для обучения в классах:`,
+                title: `Укажите количество детей с инвалидностью для обучения в классах`,
+                alt: 'amountDisabled',
                 type: 'checkbox',
                 details: {
                     options: {
@@ -175,6 +184,7 @@ export default class QuizService {
                 id: 10,
                 title: `Ежегодные затраты на содержание 1 ребенка в Вашем учреждении
                 составляют`,
+                alt: 'costPerOne',
                 type: 'input',
                 details: {
                     options: null,
@@ -188,7 +198,8 @@ export default class QuizService {
             },
             {
                 id: 11,
-                title: `Данные лица, заполнившего анкету:`,
+                title: `Данные лица, заполнившего анкету`,
+                alt: 'personalInfo',
                 type: 'input',
                 details: {
                     options: null,
@@ -203,6 +214,7 @@ export default class QuizService {
             {
                 id: 12,
                 title: `Актуальные проблемы деятельности учреждения`,
+                alt: 'problems',
                 type: 'textarea',
                 details: {
                     options: null,

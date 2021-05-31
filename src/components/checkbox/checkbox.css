@@ -1,10 +1,6 @@
 .checkbox__row{
     display: flex;
     justify-content: space-between;
-}
-
-.checkbox__row-item{
-    display: flex;
     align-items: center;
 }
 

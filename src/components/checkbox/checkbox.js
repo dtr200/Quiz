@@ -1,66 +1,76 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputFile from '../input-file';
 
 import './checkbox.css';
 
-const Checkbox = ({ id, name }) => {
-
-    const show = `form-check-label form-control-lg checkbox__label checkbox__label-file`;
-    const hide = `${show} hide`;
+const Checkbox = ({ id, name, onCheck }) => {
 
     const [ check, setCheck ] = useState(false); 
-    const [ inputVisible, setInputVisible ] = useState(hide);
     
     const checkHandler = () => {
-
         setCheck(prev => !prev);
-
-        const inputClass = !check ? show : hide;
-        setInputVisible(inputClass);
+        onCheck(!check);                 
     }
 
     return (
-        <div className="checkbox__row form-check">
-           <div 
-                className="checkbox__row-item"
-                onClick={checkHandler}>
-                <input 
-                    className="checkbox__main form-check-input"
-                    type="checkbox" 
-                    id={id}
-                    checked={check}
-                    onChange={() => null}/>
-                <label 
-                    className="form-check-label form-control-lg checkbox__label"
-                    htmlFor={id}>
-                    {name}
-                </label>
-            </div> 
-            <InputFile visible={inputVisible}/>
+        <div className="checkbox__row form-check"
+             onClick={checkHandler}>
+            <input 
+                className="checkbox__main form-check-input"
+                type="checkbox" 
+                id={id}
+                checked={check}
+                onChange={() => null}/>
+            <label 
+                className="form-check-label form-control-lg checkbox__label"
+                htmlFor={id}>
+                {name}
+            </label>
         </div>        
     )
 }
 
 const CheckboxContainer = ({ title, details }) => {
 
+    const { link } = details;
     const { list } = details.options;
 
-    return (
-        <Fragment>
-            <label className="">{title}</label>
-            {
-                list.map(({ id, name }) => {
-                    const blockKey = `${id}b`;
+    const show = `form-check-label form-control-lg checkbox__label checkbox__label-file`;
+    const hide = `${show} hide`;
+    
+    const [ inputVisible, setInputVisible ] = useState(hide);
+    const [ checkedAmount, setCheckedAmount ] = useState(0);
 
-                    return (
-                          <Checkbox 
-                            name={name}
-                            key={blockKey}
-                            id={id} />
-                    )
-                })
-            }
-        </Fragment>              
+    const checkboxHandler = (check) => {
+        const value = check ? 1 : -1;
+        setCheckedAmount(prev => prev + value);                
+    }
+
+    useEffect(() => {
+        if(link){
+            const inputClass = checkedAmount ? show : hide;
+            setInputVisible(inputClass); 
+        }        
+    })
+
+    return (
+        <div>
+            <label className="">{title}</label>
+                {
+                    list.map(({ id, name }) => {
+                        const blockKey = `${id}b`;
+
+                        return (
+                            <Checkbox 
+                                name={name}
+                                onCheck={checkboxHandler}
+                                key={blockKey}
+                                id={id} />
+                        )
+                    })
+                }
+            <InputFile visible={inputVisible}/> 
+        </div>    
     )
 }
 

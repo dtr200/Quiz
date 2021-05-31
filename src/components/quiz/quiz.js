@@ -2,7 +2,7 @@ import React, {Fragment, useEffect } from 'react';
 import Input from '../input';
 import Select from '../select';
 import Textarea from '../textarea';
-import Checkbox from '../checkbox/checkbox';
+import Checkbox from '../checkbox';
 import { withQuizService } from '../hoc';
 import { questionsLoaded } from '../../actions';
 import { connect } from 'react-redux';
@@ -35,7 +35,7 @@ const Quiz = ({ quizService, questions, questionsLoaded }) => {
         <Fragment>
             <ul className='quiz__list form-control-lg'>
                 {
-                    questions.map(({id, title, type, details}) => {
+                    questions.map(({ id, title, type, details }) => {
                         const getFullRow = getRow(id, title, details);
 
                         switch (type){
