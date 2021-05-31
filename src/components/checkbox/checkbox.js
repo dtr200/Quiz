@@ -30,7 +30,7 @@ const Checkbox = ({ id, name, onCheck }) => {
     )
 }
 
-const CheckboxContainer = ({ title, details }) => {
+const CheckboxContainer = ({ title, details, alt }) => {
 
     const { link } = details;
     const { list } = details.options;

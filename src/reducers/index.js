@@ -1,7 +1,7 @@
 const initialState = {
     questions: [],
-    answers: [], // ответы
-    loading: false,
+    answers: [],
+    loading: true,
     error: null
 }
 

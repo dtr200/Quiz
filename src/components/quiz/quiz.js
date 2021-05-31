@@ -3,17 +3,19 @@ import Input from '../input';
 import Select from '../select';
 import Textarea from '../textarea';
 import Checkbox from '../checkbox';
+import Spinner from '../spinner';
 import { withQuizService } from '../hoc';
-import { questionsLoaded } from '../../actions';
+import { questionsRequest, questionsLoaded } from '../../actions';
 import { connect } from 'react-redux';
 
 import './quiz.css';
 
-const Quiz = ({ quizService, questions, questionsLoaded }) => {
+const Quiz = ({ quizService, questions, loading, questionsLoaded }) => {
 
     useEffect(() => {
-        const data = quizService.getQuestions();
-        questionsLoaded(data)
+        quizService.getQuestions()
+            .then((data) => 
+                questionsLoaded(data))
     }, [])
 
     const getRow = (id, title, details) => (Wrapped) => {
@@ -31,12 +33,15 @@ const Quiz = ({ quizService, questions, questionsLoaded }) => {
         )
     }
 
+    if(loading)
+        return <Spinner />
+
     return (
         <Fragment>
             <ul className='quiz__list form-control-lg'>
                 {
-                    questions.map(({ id, title, type, details }) => {
-                        const getFullRow = getRow(id, title, details);
+                    questions.map(({ id, title, type, details, alt }) => {
+                        const getFullRow = getRow(id, title, details, alt);
 
                         switch (type){
                             case 'input': 
@@ -61,9 +66,10 @@ const Quiz = ({ quizService, questions, questionsLoaded }) => {
     )
 }
 
-const mapStateToProps = ({ questions }) => {
+const mapStateToProps = ({ questions, loading }) => {
     return {
-        questions
+        questions,
+        loading
     }
 }
 

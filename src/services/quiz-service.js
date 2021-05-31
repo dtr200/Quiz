@@ -1,7 +1,6 @@
 export default class QuizService {
     
-    getQuestions(){
-        return [            
+    data = [            
             {
                 id: 1,
                 title: `Наименование учреждения (полное и сокращенное)`,
@@ -224,5 +223,11 @@ export default class QuizService {
                 }
             }
         ];
+
+    getQuestions(){
+        return new Promise((resolve) => {
+            setTimeout(() => 
+                resolve(this.data), 500);
+        })
     }
 }
