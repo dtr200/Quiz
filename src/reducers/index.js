@@ -31,7 +31,6 @@ const reducer = (state = initialState, action) => {
             }
         case 'MESSAGE_ADDED_FROM_INPUT':
             const { alt, text } = action.payload;
-            console.log('REDUCER:', alt, text)
             return {
                 ...state,
                 answers: {

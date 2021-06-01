@@ -10,6 +10,10 @@ const Input = ({ id, title, alt, answers, inputMessageAdded }) => {
         inputMessageAdded(e.target.value, alt);
     }
 
+    const setValue = () => {
+        return answers[alt] ? answers[alt] : ""
+    }
+
     return (
         <Fragment>
             <label htmlFor={id}>{title}</label>
@@ -17,7 +21,7 @@ const Input = ({ id, title, alt, answers, inputMessageAdded }) => {
                 className="form-control form-control-lg"
                 type="text"
                 onChange={handleChange}
-                value={answers[alt]}
+                value={setValue()}
                 id={id}/>
         </Fragment>              
     )
