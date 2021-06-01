@@ -34,6 +34,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 answers: {
+                    ...state.answers,
                     [alt]: text
                 }
             }
