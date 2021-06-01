@@ -6,23 +6,38 @@ import Checkbox from '../checkbox';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import { withQuizService } from '../hoc';
-import { questionsRequest, questionsLoaded, questionsError } from '../../actions';
+import { fetchQuestions } from '../../actions';
 import { connect } from 'react-redux';
 
 import './quiz.css';
 
-const Quiz = ({ quizService, questions, loading, 
-                error, questionsLoaded, questionsError }) => {
+const QuizContainer = ({ fetchQuestions, questions, 
+                loading, error }) => {
 
     useEffect(() => {
-        quizService.getQuestions()
-            .then(data => questionsLoaded(data))
-            .catch(err => questionsError(err));
+        fetchQuestions()
     }, [])
+
+    if(loading)
+        return <Spinner />
+
+    if(error)
+        return <ErrorIndicator />
+        
+    return (
+        <Fragment>
+            <Quiz questions={questions}/>
+            <input 
+                className="quiz__submit btn btn-lg btn-success"
+                type="submit"/>
+        </Fragment>                     
+    )
+}
+
+const Quiz = ({ questions }) => {
 
     const getRow = (id, title, details) => (Wrapped) => {
         const liKey = `${id}li`;
-        
         return (
             <li
                 className='quiz__list-item'
@@ -35,15 +50,8 @@ const Quiz = ({ quizService, questions, loading,
         )
     }
 
-    if(loading)
-        return <Spinner />
-
-    if(error)
-        return <ErrorIndicator />
-        
     return (
-        <Fragment>
-            <ul className='quiz__list form-control-lg'>
+        <ul className='quiz__list form-control-lg'>
                 {
                     questions.map(({ id, title, type, details, alt }) => {
                         const getFullRow = getRow(id, title, details, alt);
@@ -63,11 +71,6 @@ const Quiz = ({ quizService, questions, loading,
                     })
                 }
             </ul>
-            <input 
-                className="quiz__submit btn btn-lg btn-success"
-                type="submit"/>
-
-        </Fragment>                     
     )
 }
 
@@ -79,12 +82,13 @@ const mapStateToProps = ({ questions, loading, error }) => {
     }
 }
 
-const mapDispatchToProps = {
-    questionsRequest,
-    questionsLoaded,
-    questionsError
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const { quizService } = ownProps;
+    return {
+        fetchQuestions: fetchQuestions(quizService, dispatch)
+    }
 }
 
 export default withQuizService()(
-        connect(mapStateToProps, mapDispatchToProps)(Quiz)
+        connect(mapStateToProps, mapDispatchToProps)(QuizContainer)
         );

@@ -18,8 +18,12 @@ const questionsError = (error) => {
     }
 }
 
+const fetchQuestions = (quizService, dispatch) => () => {
+    quizService.getQuestions()
+    .then(data => dispatch(questionsLoaded(data)))
+    .catch(err => dispatch(questionsError(err)));
+}
+
 export {
-    questionsRequest,
-    questionsLoaded,
-    questionsError
+    fetchQuestions
 }
