@@ -12,11 +12,16 @@ import { connect } from 'react-redux';
 import './quiz.css';
 
 const QuizContainer = ({ fetchQuestions, questions, 
-                loading, error }) => {
+                loading, error, answers }) => {
 
     useEffect(() => {
         fetchQuestions()
     }, [])
+
+    const sendData = (e) => {
+        e.preventDefault();
+        console.log(answers)
+    }
 
     if(loading)
         return <Spinner />
@@ -29,7 +34,8 @@ const QuizContainer = ({ fetchQuestions, questions,
             <Quiz questions={questions}/>
             <input 
                 className="quiz__submit btn btn-lg btn-success"
-                type="submit"/>
+                type="submit"
+                onClick={sendData}/>
         </Fragment>                     
     )
 }
@@ -75,11 +81,12 @@ const Quiz = ({ questions }) => {
     )
 }
 
-const mapStateToProps = ({ questions, loading, error }) => {
+const mapStateToProps = ({ questions, loading, error, answers }) => {
     return {
         questions,
         loading,
-        error
+        error,
+        answers
     }
 }
 

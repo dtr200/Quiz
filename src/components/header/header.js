@@ -18,7 +18,7 @@ const Header = () => {
                         <Link 
                             to='/stats' 
                             className='nav-link'>
-                            Статистика
+                            Аналитика
                         </Link>
                     </li>
                 </ul>
