@@ -1,17 +1,22 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { inputMessageAdded } from '../../actions';
 import Option from '../option';
 
 import './select.css';
 
-const Select = ({ id, details, title }) => {
-
-    const [ value, setValue ] = useState('');
+const Select = ({ id, details, title, alt, 
+                  answers, inputMessageAdded }) => {
 
     const { list } = details.options;
 
     const selectHandler = (e) => {
         const { value } = e.target;
-        setValue(value);
+        inputMessageAdded(value, alt);
+    }
+
+    const getValue = () => {
+        return answers[alt] ? answers[alt] : ''
     }
 
     return (
@@ -22,7 +27,7 @@ const Select = ({ id, details, title }) => {
             </label>
             <select 
                 className="form-control form-control-lg"
-                value={value}
+                value={getValue()}
                 onChange={selectHandler}
                 id={id}>
                 { 
@@ -34,10 +39,19 @@ const Select = ({ id, details, title }) => {
                         )
                     }) 
                 }
-            </select>
-            
+            </select>            
         </Fragment>
     )
 }
 
-export default Select;
+const mapStateToProps = ({ answers }) => {
+    return {
+        answers
+    }
+}
+
+const mapDispatchToProps = {
+    inputMessageAdded
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Select);
