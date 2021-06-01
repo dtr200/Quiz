@@ -229,7 +229,7 @@ export default class QuizService {
             const random = Math.random();
             
             setTimeout(() => {
-                return  random > 0.2 ? resolve(this.data) : 
+                return  random > 0.1 ? resolve(this.data) : 
                     reject(new Error('Something bad happens'));
             }, 500);
         })

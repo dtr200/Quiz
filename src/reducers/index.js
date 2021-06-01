@@ -5,6 +5,36 @@ const initialState = {
     error: null
 }
 
+const updateCheckbox = (state, payload) => {
+
+    const removeId = (list, id) => {
+        const index = list.findIndex(item => item === id);
+        return [
+            ...list.slice(0, index),
+            ...list.slice(index + 1)
+        ]
+    }
+
+    const checkId = (idList, id) => {
+        return idList.includes(id) ? removeId(idList, id) : 
+                                    [...idList, id];
+    }
+    
+    const { checked, alt, file } = payload;
+    const idList = state.answers[alt] ? state.answers[alt].idList : [];
+
+    return {
+        ...state,
+        answers: {
+            ...state.answers,
+            [alt]: {
+                ...state.answers[alt],
+                idList: checkId(idList, checked)
+            }
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
 
     switch(action.type){
@@ -38,6 +68,8 @@ const reducer = (state = initialState, action) => {
                     [alt]: text
                 }
             }
+        case 'DATA_RECEIVED_FROM_CHECKBOX':
+            return updateCheckbox(state, action.payload);
         default: 
             return state;
     }

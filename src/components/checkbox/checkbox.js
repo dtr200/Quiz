@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { checkboxDataReceived } from '../../actions';
 import InputFile from '../input-file';
 
 import './checkbox.css';
@@ -9,7 +11,7 @@ const Checkbox = ({ id, name, onCheck }) => {
     
     const checkHandler = () => {
         setCheck(prev => !prev);
-        onCheck(!check);                 
+        onCheck(!check, id);                 
     }
 
     return (
@@ -30,7 +32,8 @@ const Checkbox = ({ id, name, onCheck }) => {
     )
 }
 
-const CheckboxContainer = ({ title, details, alt }) => {
+const CheckboxContainer = ({ title, details, alt, 
+                             answers, checkboxDataReceived }) => {
 
     const { link } = details;
     const { list } = details.options;
@@ -39,17 +42,16 @@ const CheckboxContainer = ({ title, details, alt }) => {
     const hide = `${show} hide`;
     
     const [ inputVisible, setInputVisible ] = useState(hide);
-    const [ checkedAmount, setCheckedAmount ] = useState(0);
 
-    const checkboxHandler = (check) => {
-        const value = check ? 1 : -1;
-        setCheckedAmount(prev => prev + value);                
+    const checkboxHandler = (check, id) => {
+        checkboxDataReceived(id, alt);
     }
 
     useEffect(() => {
-        if(link){
-            const inputClass = checkedAmount ? show : hide;
-            setInputVisible(inputClass); 
+        if(link && answers[alt]){
+            const { idList } = answers[alt];
+            const inputClass = idList.length ? show : hide
+            setInputVisible(inputClass);
         }        
     })
 
@@ -74,4 +76,14 @@ const CheckboxContainer = ({ title, details, alt }) => {
     )
 }
 
-export default CheckboxContainer;
+const mapStateToProps = ({ answers }) => {
+    return {
+        answers
+    }
+}
+
+const mapDispatchToProps = {
+    checkboxDataReceived
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckboxContainer);

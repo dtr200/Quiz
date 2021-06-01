@@ -28,6 +28,17 @@ const inputMessageAdded = (text, alt) => {
     }
 }
 
+const checkboxDataReceived = (id, alt, file = null) => {
+    return {
+        type: 'DATA_RECEIVED_FROM_CHECKBOX',
+        payload: {
+            checked: id,
+            alt,
+            file
+        }
+    }
+}
+
 const fetchQuestions = (quizService, dispatch) => () => {
     quizService.getQuestions()
     .then(data => dispatch(questionsLoaded(data)))
@@ -36,5 +47,6 @@ const fetchQuestions = (quizService, dispatch) => () => {
 
 export {
     fetchQuestions,
-    inputMessageAdded
+    inputMessageAdded,
+    checkboxDataReceived
 }
