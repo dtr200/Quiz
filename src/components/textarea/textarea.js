@@ -1,17 +1,21 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { inputMessageAdded } from '../../actions';
 
 import './textarea.css';
 
-const Textarea = ({ id, title }) => {
-
-    const [ text, setText ] = useState('');
+const Textarea = ({ id, title, alt, answers, inputMessageAdded }) => {
 
     const labelKey = `${id}tlab`;
     const areaKey = `${id}tar`;
 
     const areaHandler = (e) => {
         const { value } = e.target;
-        setText(value);
+        inputMessageAdded(value, alt);
+    }
+
+    const getValue = () => {
+        return answers[alt] ? answers[alt] : ''
     }
     
     return (
@@ -25,11 +29,21 @@ const Textarea = ({ id, title }) => {
                 className="form-control form-control-lg" 
                 id={id}
                 key={areaKey}
-                value={text}
+                value={getValue()}
                 onChange={areaHandler}>
             </textarea>            
         </Fragment>        
     )
 }
 
-export default Textarea;
+const mapStateToProps = ({ answers }) => {
+    return {
+        answers
+    }
+}
+
+const mapDispatchToProps = {
+    inputMessageAdded
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Textarea);
