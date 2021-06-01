@@ -11,7 +11,7 @@ const Checkbox = ({ id, name, onCheck }) => {
     
     const checkHandler = () => {
         setCheck(prev => !prev);
-        onCheck(!check, id);                 
+        onCheck(id);                 
     }
 
     return (
@@ -43,7 +43,7 @@ const CheckboxContainer = ({ title, details, alt,
     
     const [ inputVisible, setInputVisible ] = useState(hide);
 
-    const checkboxHandler = (check, id) => {
+    const checkboxHandler = (id) => {
         checkboxDataReceived(id, alt);
     }
 
