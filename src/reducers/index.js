@@ -1,6 +1,6 @@
 const initialState = {
     questions: [],
-    answers: [],
+    answers: {},
     loading: true,
     error: null
 }
@@ -9,22 +9,34 @@ const reducer = (state = initialState, action) => {
 
     switch(action.type){
         case 'FETCH_QUESTIONS_REQUST': 
-            return {
+            return {                
                 questions: [],
+                answers: {},
                 loading: true,
                 error: null
             }
         case 'FETCH_QUESTIONS_SUCCESS':
             return {
                 questions: action.payload,
+                answers: {},
                 loading: false,
                 error: null
             }
         case 'FETCH_QUESTIONS_FAILURE':
             return {
                 questions: [],
+                answers: {},
                 loading: false,
                 error: action.payload
+            }
+        case 'MESSAGE_ADDED_FROM_INPUT':
+            const { alt, text } = action.payload;
+            console.log('REDUCER:', alt, text)
+            return {
+                ...state,
+                answers: {
+                    [alt]: text
+                }
             }
         default: 
             return state;

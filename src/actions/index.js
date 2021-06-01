@@ -18,6 +18,16 @@ const questionsError = (error) => {
     }
 }
 
+const inputMessageAdded = (text, alt) => {
+    return {
+        type: 'MESSAGE_ADDED_FROM_INPUT',
+        payload: {
+            text,
+            alt
+        }
+    }
+}
+
 const fetchQuestions = (quizService, dispatch) => () => {
     quizService.getQuestions()
     .then(data => dispatch(questionsLoaded(data)))
@@ -25,5 +35,6 @@ const fetchQuestions = (quizService, dispatch) => () => {
 }
 
 export {
-    fetchQuestions
+    fetchQuestions,
+    inputMessageAdded
 }

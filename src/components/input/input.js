@@ -1,13 +1,13 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { inputMessageAdded } from '../../actions';
 
 import './input.css';
 
-const Input = ({ id, title }) => {
+const Input = ({ id, title, alt, answers, inputMessageAdded }) => {
 
-    const [value, setValue] = useState('');
-
-    const handleChange = (e) => {
-        setValue(e.target.value);
+    const handleChange = (e) => {        
+        inputMessageAdded(e.target.value, alt);
     }
 
     return (
@@ -17,10 +17,20 @@ const Input = ({ id, title }) => {
                 className="form-control form-control-lg"
                 type="text"
                 onChange={handleChange}
-                value={value}
+                value={answers[alt]}
                 id={id}/>
         </Fragment>              
     )
 }
 
-export default Input;
+const mapStateToProps = ({ answers }) => {
+    return {
+        answers
+    }
+}
+
+const mapDispatchToProps = {
+    inputMessageAdded
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Input);

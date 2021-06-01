@@ -36,7 +36,7 @@ const QuizContainer = ({ fetchQuestions, questions,
 
 const Quiz = ({ questions }) => {
 
-    const getRow = (id, title, details) => (Wrapped) => {
+    const getRow = (id, title, details, alt) => (Wrapped) => {
         const liKey = `${id}li`;
         return (
             <li
@@ -45,7 +45,8 @@ const Quiz = ({ questions }) => {
                 <Wrapped 
                     id={id}
                     details={details}
-                    title={title} />
+                    title={title}
+                    alt={alt} />
             </li>
         )
     }
