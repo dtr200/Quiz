@@ -1,6 +1,7 @@
 const initialState = {
     questions: [],
     answers: {},
+    stats: {},
     loading: true,
     error: null
 }

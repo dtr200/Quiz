@@ -15,7 +15,7 @@ const QuizContainer = ({ fetchQuestions, questions, loading,
                          error, answers, dataServer }) => {
 
     useEffect(() => {
-        fetchQuestions()
+        fetchQuestions();
     }, [])
 
     const sendData = (e) => {
