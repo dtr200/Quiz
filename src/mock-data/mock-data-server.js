@@ -16,7 +16,7 @@ export default class MockDataServer {
             },
             amountDisabled: {
                 idList: [14]
-            }
+            },
             costPerOne: "53000",
             personalInfo: "Михайлов Михаил Михайлович",
             problems: "Нет проблем"     
@@ -37,7 +37,7 @@ export default class MockDataServer {
             },
             amountDisabled: {
                 idList: [14, 15]
-            }
+            },
             costPerOne: "52200",
             personalInfo: "Иринова Ирина Ириновна",
             problems: "Несколько незначительных проблем"
@@ -63,14 +63,36 @@ export default class MockDataServer {
     }
 
     getAllData(){
-        return this.data;
+        return new Promise((resolve) => {
+            resolve(this.data);
+        })
     }
 
     getCompanyData(companyName){
-        return data[companyName];
+        return new Promise((resolve, reject) => {
+            const result = this.data[companyName];
+            if(!result)
+                return reject(new Error('Данных такой компании отсутствуют'));
+            resolve(result);
+        })       
     }
 
     getNameFromId(id){
-        return nameFromId[id];
+        return new Promise((resolve, reject) => {
+            const result = this.nameFromId[id];
+            if(!result)
+                return reject(new Error('Некорректный ID'));
+            resolve(result);
+        })
+    }
+
+    setNewCompany(data){
+        return new Promise((resolve, reject) => {
+            const name = data.companyName;
+            if(!name)
+                return reject(new Error('Название компании не указано'));
+            this.data[name] = data;
+            resolve(this.data);
+        })
     }
 }

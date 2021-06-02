@@ -8,17 +8,22 @@ import App from './components/app';
 import ErrorBoundry from './components/error-boundry';
 import QuizService from './services/quiz-service';
 import QuizContext from './components/quiz-service-context';
+import MockDataServer from './mock-data';
+import DataServerContext from './components/data-server-context';
 
 const quizService = new QuizService();
+const mockDataServer = new MockDataServer();
 
 ReactDOM.render(
     <Provider store={store}>
-        <ErrorBoundry> 
-            <QuizContext.Provider value={quizService}>
-                <Router>
-                   <App /> 
-                </Router>                
-            </QuizContext.Provider>
+        <ErrorBoundry>
+            <DataServerContext.Provider value={mockDataServer}>
+                <QuizContext.Provider value={quizService}>
+                    <Router>
+                    <App /> 
+                    </Router>                
+                </QuizContext.Provider>
+            </DataServerContext.Provider>
         </ErrorBoundry>
     </Provider>,
     document.getElementById('root')

@@ -5,14 +5,14 @@ import Textarea from '../textarea';
 import Checkbox from '../checkbox';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
-import { withQuizService } from '../hoc';
+import { withQuizService, withDataServer } from '../hoc';
 import { fetchQuestions } from '../../actions';
 import { connect } from 'react-redux';
 
 import './quiz.css';
 
-const QuizContainer = ({ fetchQuestions, questions, 
-                loading, error, answers }) => {
+const QuizContainer = ({ fetchQuestions, questions, loading,
+                         error, answers, dataServer }) => {
 
     useEffect(() => {
         fetchQuestions()
@@ -20,7 +20,10 @@ const QuizContainer = ({ fetchQuestions, questions,
 
     const sendData = (e) => {
         e.preventDefault();
-        console.log(answers)
+        const result = answers;
+        dataServer.setNewCompany(result)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
     if(loading)
@@ -97,6 +100,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 }
 
-export default withQuizService()(
+export default withDataServer()(
+        withQuizService()(
         connect(mapStateToProps, mapDispatchToProps)(QuizContainer)
-        );
+        ));
