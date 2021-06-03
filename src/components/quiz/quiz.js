@@ -1,10 +1,11 @@
-import React, {Fragment, useEffect } from 'react';
+import React, {Fragment, useEffect, useState } from 'react';
 import Input from '../input';
 import Select from '../select';
 import Textarea from '../textarea';
 import Checkbox from '../checkbox';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
+import Alert from '../alert';
 import { withQuizService, withDataServer } from '../hoc';
 import { fetchQuestions } from '../../actions';
 import { connect } from 'react-redux';
@@ -18,13 +19,46 @@ const QuizContainer = ({ fetchQuestions, questions, loading,
         fetchQuestions();
     }, [])
 
+    const initialState = {
+        show: false,
+        isAdded: false,
+        message: null
+    }
+
+    const [ alertData, setAlertData ] = useState(initialState);
+
     const sendData = (e) => {
         e.preventDefault();
         const result = answers;
+        let data = null;
         dataServer.setNewCompany(result)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+            .then(res => {
+                data = {
+                    show: true,
+                    isAdded: true,
+                    message: 'Организация успешно добавлена'
+                }
+                console.log(res)
+            })
+            .catch(err => {
+                console.log('catch')
+                data = {
+                    show: true,
+                    isAdded: false,
+                    message: err.message
+                }               
+            })
+            .finally(() => {
+                setAlertData(data);
+            });
     }
+
+    const closeAlert = () => {
+        console.log('close')
+        setAlertData(initialState)
+    }
+
+    console.log('rerender')
 
     if(loading)
         return <Spinner />
@@ -34,11 +68,13 @@ const QuizContainer = ({ fetchQuestions, questions, loading,
         
     return (
         <Fragment>
+            <Alert data={alertData}
+                   closeAlert={closeAlert}/>
             <Quiz questions={questions}/>
             <input 
                 className="quiz__submit btn btn-lg btn-success"
                 type="submit"
-                onClick={sendData}/>
+                onClick={sendData}/>            
         </Fragment>                     
     )
 }
