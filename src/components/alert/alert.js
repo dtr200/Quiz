@@ -5,7 +5,7 @@ import './alert.css';
 const Alert = ({ data, closeAlert }) => {
     const success = 'alert alert-success alert-show';
     const warning = 'alert alert-warning alert-show';
-    const hide = 'alert-hide';
+    const hide = 'alert alert-hide';
 
     const [ display, setDisplay ] = useState(hide);
 
@@ -18,8 +18,8 @@ const Alert = ({ data, closeAlert }) => {
                       setDisplay(warning); 
 
             setTimeout(() => {
-                closeAlert()
-                setDisplay(hide) 
+                closeAlert();
+                setDisplay(hide);
             }, 2000)            
         }    
     }, [show])
