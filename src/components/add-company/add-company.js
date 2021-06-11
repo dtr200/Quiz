@@ -4,7 +4,7 @@ import './add-company.css';
 
 const AddCompany = () => {
     return (
-        <button className="add-company btn btn-secondary"></button>
+            <button className="add-company btn btn-light"></button>        
     )
 }
 
